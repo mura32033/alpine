@@ -24,6 +24,19 @@
       </time>
     </header>
 
+    <div v-if="toc.links.length > 0" class="toc">
+      <div class="toc-title">
+        記事の目次
+      </div>
+      <ul>
+        <li v-for="link in toc.links" :key="link.text">
+          <a :href="`#${link.id}`">
+            <Icon name="mdi:circle" size="8" /> {{ link.text }}
+          </a>
+        </li>
+      </ul>
+    </div>
+
     <div class="prose">
       <slot />
       <div
@@ -37,14 +50,14 @@
       </div>
       <hr class="divider">
       <div class="pagination">
-        <div class="prev" v-if="prev">
-          <NuxtLink v-if="prev.layout != 'page'" :to="prev._path">
-            <Icon name="material-symbols:arrow-left" /> {{ prev.title }}
+        <div class="next">
+          <NuxtLink v-if="next && next.layout != 'page'" :to="next._path">
+            <Icon name="material-symbols:arrow-left" /> {{ next.title }}
           </NuxtLink>
         </div>
-        <div class="next" v-if="next">
-          <NuxtLink v-if="next.layout != 'page'" :to="next._path">
-            {{ next.title }} <Icon name="material-symbols:arrow-right" />
+        <div class="prev">
+          <NuxtLink v-if="prev.layout != 'page'" :to="prev._path">
+            {{ prev.title }} <Icon name="material-symbols:arrow-right" />
           </NuxtLink>
         </div>
       </div>
@@ -53,13 +66,9 @@
 </template>
 
 <script setup lang="ts">
-const { page, prev, next } = useContent()
+const { page, prev, next, toc } = useContent()
 const route = useRoute()
 const alpine = useAppConfig().alpine
-
-console.log(prev)
-console.log(next)
-
 const article = ref<HTMLElement | null>(null)
 
 if (page.value && page.value.cover) {
@@ -148,7 +157,7 @@ css({
       a: {
         display: 'flex',
         alignItems: 'center',
-        fontSize: '{text.lg.fontSize}',
+        fontSize: '{text.sm.fontSize}',
         fontWeight: '{fontWeight.medium}',
         '& :deep(svg)': {
           width: '{size.16}',
@@ -157,10 +166,44 @@ css({
         }
       },
       '.prev': {
-        justifySelf: 'start'
+        justifySelf: 'end'
       },
       '.next': {
-        justifySelf: 'end'
+        justifySelf: 'start'
+      }
+    },
+    '.toc': {
+      display: 'flex',
+      flexDirection: 'column',
+      border: '1px solid {elements.border.secondary.static}',
+      borderRadius: '{borderRadius.md}',
+      padding: '{space.4}',
+      marginBottom: '{space.12}',
+      backgroundColor: '{color.gray.900}',
+      '.toc-title': {
+        fontSize: '{text.lg.fontSize}',
+        fontWeight: '{fontWeight.medium}',
+        marginBottom: '{space.2}',
+        color: '{color.gray.300}',
+      },
+      'ul': {
+        listStyle: 'none',
+        paddingLeft: '{space.4}',
+        li: {
+          lineHeight: '{text.sm.lineHeight}',
+          marginBottom: '{space.2}',
+          a: {
+            textDecoration: 'none',
+            display: 'flex',
+            alignItems: 'center',
+            color: '{color.gray.400}',
+            '& :deep(svg)': {
+              width: '{size.8}',
+              height: '{size.8}',
+              marginRight: '{space.1}'
+            }
+          }
+        }
       }
     }
   }
