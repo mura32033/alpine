@@ -35,14 +35,30 @@
           <Icon :name="alpine?.backToTop?.icon || 'material-symbols:arrow-upward'" />
         </ProseA>
       </div>
+      <hr class="divider">
+      <div class="pagination">
+        <div class="prev" v-if="prev">
+          <NuxtLink v-if="prev.layout != 'page'" :to="prev._path">
+            <Icon name="material-symbols:arrow-left" /> {{ prev.title }}
+          </NuxtLink>
+        </div>
+        <div class="next" v-if="next">
+          <NuxtLink v-if="next.layout != 'page'" :to="next._path">
+            {{ next.title }} <Icon name="material-symbols:arrow-right" />
+          </NuxtLink>
+        </div>
+      </div>
     </div>
   </article>
 </template>
 
 <script setup lang="ts">
-const { page } = useContent()
+const { page, prev, next } = useContent()
 const route = useRoute()
 const alpine = useAppConfig().alpine
+
+console.log(prev)
+console.log(next)
 
 const article = ref<HTMLElement | null>(null)
 
@@ -104,6 +120,7 @@ css({
     },
     '.prose': {
       '.back-to-top': {
+        color: '{elements.text.secondary.color.static}',
         display: 'flex',
         justifyContent: 'flex-end',
         alignItems: 'center',
@@ -116,6 +133,35 @@ css({
       '& :deep(h1)': {
         display: 'none'
       },
+    },
+    '.divider': {
+      border: 'none',
+      borderBottom: '1px solid {elements.border.secondary.static}',
+      marginTop: '{space.12}',
+      marginBottom: '{space.6}'
+    },
+    '.pagination': {
+      color: '{elements.text.secondary.color.static}',
+      display: 'grid',
+      gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+      justifyContent: 'space-between',
+      a: {
+        display: 'flex',
+        alignItems: 'center',
+        fontSize: '{text.lg.fontSize}',
+        fontWeight: '{fontWeight.medium}',
+        '& :deep(svg)': {
+          width: '{size.16}',
+          height: '{size.16}',
+          marginRight: '{space.2}'
+        }
+      },
+      '.prev': {
+        justifySelf: 'start'
+      },
+      '.next': {
+        justifySelf: 'end'
+      }
     }
   }
 })
