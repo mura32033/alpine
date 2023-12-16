@@ -29,7 +29,7 @@ export default defineAppConfig({
 
         text: 'むらのブログ'
       },
-      navigation: true, // possible value are : true | false
+      navigation: false, // possible value are : true | false
       alignment: 'left', // possible value are : 'none' | 'left' | 'center' | 'right'
       message: '' // string that will be displayed in the footer (leave empty or delete to disable)
     },
