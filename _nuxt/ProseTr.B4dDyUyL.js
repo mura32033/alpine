@@ -1,1 +1,0 @@
-import{k as t,b as n,c as o,a6 as r}from"./entry.31pgiR1K.js";const c={};function a(e,s){return n(),o("tr",null,[r(e.$slots,"default",{},void 0,!0)])}const d=t(c,[["render",a],["__scopeId","data-v-1e70eb19"]]);export{d as default};
