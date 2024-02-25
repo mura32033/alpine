@@ -1,0 +1,1 @@
+import{k as n,b as t,c as o,a6 as a}from"./entry.CrvvMUdZ.js";const c={};function r(e,s){return t(),o("p",null,[a(e.$slots,"default",{},void 0,!0)])}const d=n(c,[["render",r],["__scopeId","data-v-41a873b8"]]);export{d as default};
