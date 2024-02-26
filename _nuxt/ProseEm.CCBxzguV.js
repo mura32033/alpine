@@ -1,0 +1,1 @@
+import{k as r,b as t,c as n,Z as o}from"./entry.DBLL8ntu.js";const s={};function a(e,c){return t(),n("em",null,[o(e.$slots,"default",{},void 0,!0)])}const l=r(s,[["render",a],["__scopeId","data-v-ab6e771b"]]);export{l as default};
