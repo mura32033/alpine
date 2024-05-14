@@ -22,6 +22,15 @@
       >
         {{ formatDate(page.date) }}
       </time>
+      <div class="tags">
+        <NuxtLink
+          v-for="(tag, index) in page.tags"
+          :key="index"
+          :to="`/articles/tag/${tag}`"
+        >
+          {{ tag }}
+        </NuxtLink>
+      </div>
     </header>
 
     <div v-if="toc.links.length > 0" class="toc">
@@ -97,7 +106,6 @@ const onBackToTop = () => {
 <style scoped lang="ts">
 css({
   article: {
-    maxWidth: '{alpine.readableLine}',
     mx: 'auto',
     py: '{space.4}',
     '@sm': {
@@ -127,6 +135,27 @@ css({
     time: {
       color: '{elements.text.secondary.color.static}'
     },
+    '.tags': {
+        marginTop: '{space.2}',
+        justifyContent: 'flex-end',
+        display: 'flex',
+        gap: '{space.2}',
+        a: {
+          padding: '{space.1} {space.2}',
+          borderRadius: '{radii.sm}',
+          border: '1px solid {color.gray.700}',
+          backgroundColor: '{transparent}',
+          color: '{color.gray.400}',
+          text: 'xs',
+          fontWeight: 700,
+          textDecoration: 'none',
+          '&:hover': {
+            backgroundColor: '{color.gray.700}',
+            borderColor: '{color.gray.500}',
+            color: '{color.gray.200}',
+          }
+        }
+      },
     '.prose': {
       '.back-to-top': {
         color: '{elements.text.secondary.color.static}',
