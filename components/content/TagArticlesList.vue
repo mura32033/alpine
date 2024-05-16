@@ -9,7 +9,7 @@ const props = defineProps({
 })
 
 // @ts-ignore
-const { data: _articles } = await useAsyncData('articles', async () => await queryContent(withTrailingSlash(props.path)).where({
+const { data: _articles } = await useAsyncData('articles', async () => await queryContent(withTrailingSlash('articles')).where({
   'tags': {
     $contains: props.tag
   }
