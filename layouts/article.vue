@@ -22,15 +22,6 @@
       >
         {{ formatDate(page.date) }}
       </time>
-      <div class="tags">
-        <NuxtLink
-          v-for="(tag, index) in page.tags"
-          :key="index"
-          :to="`/articles/tag/${tag}`"
-        >
-          {{ tag }}
-        </NuxtLink>
-      </div>
     </header>
 
     <div v-if="toc.links.length > 0" class="toc">
