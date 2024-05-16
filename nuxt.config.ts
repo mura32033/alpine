@@ -21,5 +21,11 @@ export default defineNuxtConfig({
     prerender: {
       failOnError: false
     }
+  },
+
+  router: {
+    options: {
+      strict: true
+    }
   }
 })
