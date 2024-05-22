@@ -41,35 +41,3 @@ defineProps({
     </div>
   </section>
 </template>
-
-<style scoped lang="ts">
-css({
-  '.hero': {
-    '.layout': {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(1, minmax(0, 1fr))',
-      gap: '{space.8}',
-      '.title': {
-        fontSize: '{text.4xl.fontSize}',
-        lineHeight: '{text.4xl.lineHeight}',
-        fontWeight: '{fontWeight.bold}',
-      },
-      '.description': {
-        marginTop: '{space.3}',
-        fontSize: '{text.xl.fontSize}',
-        lineHeight: '{text.xl.lineHeight}',
-        color: '{elements.text.secondary.color.static}'
-      },
-      img: {
-        width: '100%',
-        aspectRatio: '16 / 9',
-        objectFit: 'cover',
-        borderRadius: '{radii.md}',
-        '&.left': {
-          order: -1
-        }
-      },
-    }
-  }
-})
-</style>
